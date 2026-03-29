@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 // Chargement côté client uniquement
-const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
+const Particles = dynamic(() => import("@tsparticles/react"), { ssr: false });
 
 export default function BackgroundParticles() {
   return (
@@ -13,11 +13,9 @@ export default function BackgroundParticles() {
         fullScreen: { enable: true, zIndex: -1 },
         background: { color: { value: "#0f172a" } },
         particles: {
-          number: { value: 80, density: { enable: true, area: 800 } },
           color: { value: "#ffffff" },
           shape: { type: "circle" },
           opacity: { value: 0.7 },
-          size: { value: 3, random: { enable: true, minimumValue: 1 } },
           links: {
             enable: true,
             distance: 150,

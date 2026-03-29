@@ -15,69 +15,59 @@ const styles: Record<string, CSSProperties> = {
     color: "#fff",
     padding: "0 24px",
     overflow: "hidden",
-    backgroundImage: "url('/hero-bg.jpg')",
+    backgroundImage:
+      "linear-gradient(135deg, rgba(15,23,255,0.8), rgba(0,0,128,0.8)), url('/hero-bg.jpg')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
-    animation: "fadeIn 2s ease-in-out",
   },
   title: {
-    fontSize: "3rem",
-    fontWeight: 800,
+    fontSize: "4rem",
+    fontWeight: 900,
     margin: 0,
-    textShadow: "2px 2px 8px rgba(0,0,0,0.7)",
+    background: "linear-gradient(90deg, #facc15, #f43f5e)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textShadow: "2px 2px 12px rgba(0,0,0,0.8)",
   },
   subtitle: {
-    fontSize: "1.2rem",
+    fontSize: "1.5rem",
     marginTop: "24px",
-    maxWidth: "600px",
-    color: "#ccc",
-    textShadow: "1px 1px 4px rgba(0,0,0,0.6)",
+    maxWidth: "650px",
+    color: "#e5e7eb",
+    textShadow: "1px 1px 6px rgba(0,0,0,0.6)",
+    lineHeight: 1.6,
   },
   buttons: {
-    marginTop: "32px",
+    marginTop: "40px",
     display: "flex",
-    gap: "16px",
+    gap: "20px",
     flexWrap: "wrap",
     justifyContent: "center",
   },
   buttonPrimary: {
-    padding: "12px 24px",
-    borderRadius: "32px",
-    backgroundColor: "white",
-    color: "black",
-    fontWeight: 600,
+    padding: "14px 28px",
+    borderRadius: "40px",
+    background: "linear-gradient(90deg, #facc15, #f43f5e)",
+    color: "white",
+    fontWeight: 700,
     cursor: "pointer",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+    boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
     border: "none",
-    transition: "all 0.3s ease",
+    transition: "all 0.4s ease",
   },
   buttonSecondary: {
-    padding: "12px 24px",
-    borderRadius: "32px",
+    padding: "14px 28px",
+    borderRadius: "40px",
     backgroundColor: "transparent",
-    color: "white",
-    fontWeight: 600,
+    color: "#facc15",
+    fontWeight: 700,
     cursor: "pointer",
-    border: "2px solid white",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-    transition: "all 0.3s ease",
+    border: "2px solid #facc15",
+    boxShadow: "0 6px 16px rgba(0,0,0,0.3)",
+    transition: "all 0.4s ease",
   },
 };
-
-// Animation du gradient en CSS
-if (typeof window !== "undefined") {
-  const styleSheet = `
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-  `;
-  const styleTag = document.createElement("style");
-  styleTag.innerHTML = styleSheet;
-  document.head.appendChild(styleTag);
-}
 
 export default function Hero() {
   return (
@@ -85,16 +75,16 @@ export default function Hero() {
       <motion.h1
         initial={{ opacity: 0, y: -80 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1 }}
         style={styles.title}
       >
-        Audric-Dany 👋
+        Audric-Dany MB 👋
       </motion.h1>
 
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
+        transition={{ delay: 0.4, duration: 1 }}
         style={styles.subtitle}
       >
         Développeur web & mobile spécialisé en applications modernes, animations
@@ -104,11 +94,14 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, staggerChildren: 0.2 }}
+        transition={{ delay: 0.8, staggerChildren: 0.3 }}
         style={styles.buttons}
       >
         <motion.a
-          whileHover={{ scale: 1.1, backgroundColor: "#facc15", color: "#111" }}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0 12px 24px rgba(255,202,21,0.6)",
+          }}
           transition={{ type: "spring", stiffness: 300 }}
           style={styles.buttonPrimary}
           href="#projects"
@@ -117,10 +110,9 @@ export default function Hero() {
         </motion.a>
         <motion.a
           whileHover={{
-            scale: 1.1,
-            backgroundColor: "#111",
-            color: "#facc15",
-            borderColor: "#facc15",
+            scale: 1.05,
+            backgroundColor: "#facc15",
+            color: "#111",
           }}
           transition={{ type: "spring", stiffness: 300 }}
           style={styles.buttonSecondary}

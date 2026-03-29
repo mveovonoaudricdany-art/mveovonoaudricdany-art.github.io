@@ -5,7 +5,7 @@ import Skills from "../components/Skills";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import BackgroundParticles from "../components/BackgroundParticles";
-import About from "../components/About";
+import ScrollButtons from "../components/ScrollButtons";
 
 export default function Home() {
   return (
@@ -13,11 +13,11 @@ export default function Home() {
       <BackgroundParticles />
       <Navbar />
       <Hero />
-      <About />
       <Projects />
       <Skills />
       <Contact />
       <Footer />
+      <ScrollButtons />
     </>
   );
 }

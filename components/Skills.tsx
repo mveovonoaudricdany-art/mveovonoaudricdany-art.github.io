@@ -2,73 +2,82 @@
 
 import { motion } from "framer-motion";
 
-const skills = ["JavaScript", "React", "Next.js", "Expo", "SQLite"];
+const skills = [
+  "JavaScript",
+  "React",
+  "Next.js",
+  "React Native",
+  "Expo",
+  "SQLite",
+  "HTML",
+  "CSS",
+];
+
 const stats = [
-  { label: "Projets", value: 12 },
-  { label: "Clients", value: 5 },
+  { label: "Projets réalisés", value: 2 },
+  { label: "Clients satisfaits", value: 0 },
   { label: "Années d'expérience", value: 2 },
 ];
 
-const styles = {
-  section: {
-    padding: "40px 24px",
-    backgroundColor: "#111111",
-    color: "white",
-    minHeight: "100vh",
-    textAlign: "center" as "center",
-  },
-  title: {
-    fontSize: "2.5rem",
-    fontWeight: 800,
-    marginBottom: "32px",
-    textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
-  },
-  skillsContainer: {
-    display: "flex",
-    flexWrap: "wrap" as "wrap",
-    justifyContent: "center",
-    gap: "12px",
-    marginBottom: "48px",
-  },
-  skill: {
-    padding: "8px 16px",
-    borderRadius: "999px",
-    backgroundColor: "#facc15",
-    color: "#111",
-    fontWeight: 600,
-    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-  },
-  statsContainer: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "40px",
-    flexWrap: "wrap" as "wrap",
-  },
-  statValue: {
-    fontSize: "2.5rem",
-    fontWeight: 800,
-  },
-  statLabel: {
-    fontSize: "1rem",
-    color: "#ccc",
-  },
-};
-
 export default function Skills() {
   return (
-    <section style={styles.section} id="skills">
-      <h2 style={styles.title}>Compétences & Stats</h2>
+    <section
+      id="skills"
+      style={{
+        minHeight: "100vh",
+        padding: "80px 20px",
+        background: "linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb)",
+        color: "white",
+        textAlign: "center",
+      }}
+    >
+      {/* Titre */}
+      <motion.h2
+        initial={{ opacity: 0, y: -40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        style={{
+          fontSize: "2.8rem",
+          fontWeight: "800",
+          marginBottom: "50px",
+          letterSpacing: "1px",
+        }}
+      >
+        🚀 Compétences & Statistiques
+      </motion.h2>
 
-      {/* Compétences */}
-      <div style={styles.skillsContainer}>
+      {/* Skills */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "16px",
+          marginBottom: "60px",
+        }}
+      >
         {skills.map((skill, i) => (
           <motion.span
             key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.6 }}
-            style={styles.skill}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{
+              scale: 1.1,
+              boxShadow: "0 0 20px #3b82f6",
+            }}
+            transition={{
+              delay: i * 0.1,
+              duration: 0.4,
+            }}
+            style={{
+              padding: "10px 20px",
+              borderRadius: "999px",
+              background: "rgba(255,255,255,0.1)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
           >
             {skill}
           </motion.span>
@@ -76,17 +85,56 @@ export default function Skills() {
       </div>
 
       {/* Stats */}
-      <div style={styles.statsContainer}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "40px",
+          flexWrap: "wrap",
+        }}
+      >
         {stats.map((stat, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.2, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{
+              delay: i * 0.2,
+              duration: 0.6,
+            }}
+            style={{
+              background: "rgba(255,255,255,0.1)",
+              padding: "30px",
+              borderRadius: "20px",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              minWidth: "160px",
+              boxShadow: "0 8px 30px rgba(0,0,0,0.3)",
+            }}
           >
-            <p style={styles.statValue}>{stat.value}</p>
-            <p style={styles.statLabel}>{stat.label}</p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              style={{
+                fontSize: "2.5rem",
+                fontWeight: "800",
+                color: "#60a5fa",
+              }}
+            >
+              {stat.value}+
+            </motion.p>
+
+            <p
+              style={{
+                marginTop: "10px",
+                color: "#d1d5db",
+                fontSize: "1rem",
+              }}
+            >
+              {stat.label}
+            </p>
           </motion.div>
         ))}
       </div>

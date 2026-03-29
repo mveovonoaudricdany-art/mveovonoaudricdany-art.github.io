@@ -7,10 +7,15 @@ const styles = {
     display: "flex",
     flexDirection: "row" as "row",
     minHeight: "100vh",
-    backgroundColor: "#111",
+    backgroundImage:
+      "linear-gradient(135deg, rgba(15,23,255,0.8), rgba(0,0,128,0.8)), url('/hero-bg.jpg')",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
     color: "#fff",
     fontFamily: "sans-serif",
     overflowX: "hidden" as "hidden",
+    transition: "background 0.5s ease",
   },
   left: {
     flex: 1,
@@ -34,17 +39,19 @@ const styles = {
     borderRadius: "50%",
     objectFit: "cover" as "cover",
     filter: "grayscale(100%)",
-    transition: "filter 1s ease, transform 1s ease",
+    transition: "filter 1s ease, transform 1s ease, box-shadow 0.5s ease",
     border: "4px solid #facc15",
+    boxShadow: "0 8px 24px rgba(0,0,0,0.6)",
   },
   title: {
     fontSize: "2.5rem",
     fontWeight: 800,
     marginBottom: "24px",
+    textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
   },
   bioText: {
     fontSize: "1.1rem",
-    lineHeight: "1.6rem",
+    lineHeight: "1.8rem",
     marginBottom: "24px",
   },
   timelineWrapper: {
@@ -60,11 +67,14 @@ const styles = {
     paddingBottom: "16px",
   },
   timelineItem: {
-    minWidth: "120px",
+    minWidth: "140px",
     textAlign: "center" as "center",
-    padding: "12px",
-    borderRadius: "8px",
-    transition: "transform 0.2s, background-color 0.2s",
+    padding: "16px",
+    borderRadius: "12px",
+    backgroundColor: "#222",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+    transition: "all 0.3s ease",
+    position: "relative" as "relative",
   },
   counterContainer: {
     display: "flex",
@@ -74,10 +84,12 @@ const styles = {
   },
   counterBox: {
     backgroundColor: "#222",
-    padding: "16px",
-    borderRadius: "12px",
+    padding: "24px",
+    borderRadius: "16px",
     minWidth: "140px",
     textAlign: "center" as "center",
+    boxShadow: "0 6px 20px rgba(0,0,0,0.6)",
+    transition: "transform 0.3s ease, background-color 0.3s ease",
   },
   progressBarContainer: {
     position: "fixed" as "fixed",
@@ -92,6 +104,7 @@ const styles = {
     width: "100%",
     backgroundColor: "#facc15",
     height: "0%",
+    transition: "height 0.2s ease",
   },
 };
 
@@ -127,7 +140,7 @@ const countersData = [
 export default function About() {
   const [bioText, setBioText] = useState("");
   const fullBio =
-    "Je suis Audric-Dany, développeur web et mobile passionné par les technologies modernes. J’aime créer des applications fluides et interactives, avec des animations dynamiques et une touche d’humour dans chaque projet.";
+    "Je suis Audric-Dany mb, développeur web et mobile passionné par les technologies modernes. J’aime créer des applications fluides et interactives, avec des animations dynamiques et une touche d’humour dans chaque projet.";
   const [scrollProgress, setScrollProgress] = useState(0);
   const [counters, setCounters] = useState(countersData.map(() => 0));
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -157,7 +170,11 @@ export default function About() {
       if (img) {
         img.style.filter =
           window.scrollY > 100 ? "grayscale(0%)" : "grayscale(100%)";
-        img.style.transform = window.scrollY > 100 ? "scale(1.05)" : "scale(1)";
+        img.style.transform = window.scrollY > 100 ? "scale(1.08)" : "scale(1)";
+        img.style.boxShadow =
+          window.scrollY > 100
+            ? "0 12px 32px rgba(0,0,0,0.7)"
+            : "0 8px 24px rgba(0,0,0,0.6)";
       }
 
       // Animate counters
@@ -190,7 +207,7 @@ export default function About() {
     if (!timeline) return;
     const { width } = timeline.getBoundingClientRect();
     const mouseX = e.clientX;
-    const offset = (mouseX / window.innerWidth - 0.5) * 50; // -25% to +25%
+    const offset = (mouseX / window.innerWidth - 0.5) * 50;
     setTimelineOffset(offset);
   };
 
@@ -213,7 +230,7 @@ export default function About() {
 
       {/* Right Bio */}
       <div style={styles.right}>
-        <h1 style={styles.title}>À Propos de Moi</h1>
+        <h1 style={styles.title}>À Propos de Moii</h1>
         <p style={styles.bioText}>{bioText}</p>
 
         {/* Timeline */}
@@ -232,6 +249,9 @@ export default function About() {
                   ...styles.timelineItem,
                   backgroundColor:
                     hoverTooltip === item.year ? "#facc15" : "#222",
+                  color: hoverTooltip === item.year ? "#111" : "#fff",
+                  transform:
+                    hoverTooltip === item.year ? "scale(1.1)" : "scale(1)",
                 }}
                 onMouseEnter={() => setHoverTooltip(item.year)}
                 onMouseLeave={() => setHoverTooltip("")}
@@ -243,10 +263,11 @@ export default function About() {
                     style={{
                       position: "absolute",
                       backgroundColor: "#333",
-                      padding: "4px 8px",
-                      borderRadius: "4px",
+                      padding: "6px 12px",
+                      borderRadius: "6px",
                       marginTop: "40px",
-                      fontSize: "0.8rem",
+                      fontSize: "0.85rem",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     {item.tooltip}
