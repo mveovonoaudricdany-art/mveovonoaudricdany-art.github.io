@@ -1,23 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from "react";
+import React, { CSSProperties } from "react";
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   section: {
     position: "relative",
     minHeight: "100vh",
     display: "flex",
-    flexDirection: "column" as "column",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center" as "center",
-    color: "white",
+    textAlign: "center",
+    color: "#fff",
     padding: "0 24px",
     overflow: "hidden",
-    background: "linear-gradient(135deg, #0f0f0f, #1a1a1a, #111111)",
-    backgroundSize: "200% 200%",
-    animation: "gradientShift 15s ease infinite",
+    backgroundImage: "url('/hero-bg.jpg')",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    animation: "fadeIn 2s ease-in-out",
   },
   title: {
     fontSize: "3rem",
@@ -36,7 +38,7 @@ const styles = {
     marginTop: "32px",
     display: "flex",
     gap: "16px",
-    flexWrap: "wrap" as "wrap",
+    flexWrap: "wrap",
     justifyContent: "center",
   },
   buttonPrimary: {
@@ -64,14 +66,14 @@ const styles = {
 };
 
 // Animation du gradient en CSS
-const styleSheet = `
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-`;
 if (typeof window !== "undefined") {
+  const styleSheet = `
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  `;
   const styleTag = document.createElement("style");
   styleTag.innerHTML = styleSheet;
   document.head.appendChild(styleTag);
