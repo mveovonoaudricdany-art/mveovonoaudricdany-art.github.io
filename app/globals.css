@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* DARK (par défaut) */
+.dark {
+  --bg: #0d1520;
+  --text: #ffffff;
+  --primary: #3b82f6;
+  --nav-bg: #0d1520;
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --card: rgba(255, 255, 255, 0.08);
+}
+
+/* LIGHT */
+.light {
+  --bg: #ffffff;
+  --text: #0f172a;
+  --primary: #2563eb;
+  --nav-bg: #ffffff;
+  --nav-border: rgba(0, 0, 0, 0.08);
+  --card: rgba(0, 0, 0, 0.05);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -9,4 +29,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
 }

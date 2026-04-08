@@ -1,0 +1,113 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 340px;
+  height: 340px;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 0.5px solid;
+  pointer-events: none;
+}
+
+.ring1 {
+  width: 300px;
+  height: 300px;
+  border-color: #6366f122;
+  animation: spin 20s linear infinite;
+}
+
+.ring2 {
+  width: 260px;
+  height: 260px;
+  border-color: #14b8a622;
+  animation: spin 14s linear infinite reverse;
+}
+
+.card {
+  width: 220px;
+  height: 280px;
+  background: #0a0c14;
+  border: 0.5px solid #1a1f30;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(6, 8, 16, 0.85);
+  backdrop-filter: blur(8px);
+  border: 0.5px solid #1e2535;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-family: "Fira Code", monospace;
+  font-size: 10px;
+  color: #6366f1;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.floatTag {
+  position: absolute;
+  background: #0a0c14;
+  border: 0.5px solid #1e2535;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: "Fira Code", monospace;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 4;
+}
+
+.ft1 {
+  top: 20px;
+  right: -10px;
+  color: #a855f7;
+  border-color: #a855f733;
+}
+
+.ft2 {
+  top: 90px;
+  right: -30px;
+  color: #14b8a6;
+  border-color: #14b8a633;
+}
+
+.ft3 {
+  bottom: 60px;
+  right: -15px;
+  color: #f59e0b;
+  border-color: #f59e0b33;
+}
+
+.ft4 {
+  top: 50px;
+  left: -20px;
+  color: #818cf8;
+  border-color: #6366f133;
+}
+
+/* Animation des anneaux */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

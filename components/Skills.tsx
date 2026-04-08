@@ -1,140 +1,117 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const skills = [
-  "JavaScript",
-  "React",
-  "Next.js",
-  "React Native",
-  "Expo",
-  "SQLite",
-  "HTML",
-  "CSS",
-];
-
-const stats = [
-  { label: "Projets réalisés", value: 2 },
-  { label: "Clients satisfaits", value: 0 },
-  { label: "Années d'expérience", value: 2 },
-];
+import styles from "./Skills.module.css";
+import { useLanguage } from "../components/LanguageProvider";
 
 export default function Skills() {
+  const { t } = useLanguage();
+
+  const categories = [
+  {
+    title: t("skills.dev"),
+    items: [
+      {
+        name: "HTML5",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+      },
+      {
+        name: "CSS3",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+      },
+      {
+        name: "Next.js",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Tailwind",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Material UI",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/materialui/materialui-original.svg",
+      },
+      {
+        name: "Android",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg",
+      },
+    ],
+  },
+  {
+    title: t("skills.db"),
+    items: [
+      {
+        name: "MySQL",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+      },
+      {
+        name: "SQLite",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg",
+      },
+      {
+        name: "Supabase",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg",
+      },
+    ],
+  },
+  {
+    title: t("skills.tools"),
+    items: [
+      {
+        name: "VS Code",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
+      },
+      {
+        name: "Git",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+      },
+      {
+        name: "GitHub",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+      },
+      {
+        name: "Canva",
+        img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg",
+      },
+    ],
+  },
+];
+
   return (
-    <section
-      id="skills"
-      style={{
-        minHeight: "100vh",
-        padding: "80px 20px",
-        background: "linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb)",
-        color: "white",
-        textAlign: "center",
-      }}
-    >
-      {/* Titre */}
+    <section id="skills" className={styles.section}>
+      {/* TITRE */}
       <motion.h2
+        className={styles.title}
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        style={{
-          fontSize: "2.8rem",
-          fontWeight: "800",
-          marginBottom: "50px",
-          letterSpacing: "1px",
-        }}
       >
-        🚀 Compétences & Statistiques
+        {t("skills.title")}
       </motion.h2>
 
-      {/* Skills */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "16px",
-          marginBottom: "60px",
-        }}
-      >
-        {skills.map((skill, i) => (
-          <motion.span
-            key={i}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0 0 20px #3b82f6",
-            }}
-            transition={{
-              delay: i * 0.1,
-              duration: 0.4,
-            }}
-            style={{
-              padding: "10px 20px",
-              borderRadius: "999px",
-              background: "rgba(255,255,255,0.1)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            {skill}
-          </motion.span>
-        ))}
-      </div>
-
-      {/* Stats */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "40px",
-          flexWrap: "wrap",
-        }}
-      >
-        {stats.map((stat, i) => (
+      {/* CATEGORIES */}
+      <div className={styles.container}>
+        {categories.map((cat, index) => (
           <motion.div
-            key={i}
+            key={index}
+            className={styles.card}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{
-              delay: i * 0.2,
-              duration: 0.6,
-            }}
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              padding: "30px",
-              borderRadius: "20px",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              minWidth: "160px",
-              boxShadow: "0 8px 30px rgba(0,0,0,0.3)",
-            }}
+            transition={{ delay: index * 0.2 }}
           >
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              style={{
-                fontSize: "2.5rem",
-                fontWeight: "800",
-                color: "#60a5fa",
-              }}
-            >
-              {stat.value}+
-            </motion.p>
+            <h3 className={styles.cardTitle}>{cat.title}</h3>
 
-            <p
-              style={{
-                marginTop: "10px",
-                color: "#d1d5db",
-                fontSize: "1rem",
-              }}
-            >
-              {stat.label}
-            </p>
+            <div className={styles.skillsGrid}>
+              {cat.items.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className={styles.skill}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <img src={item.img} alt={item.name} />
+                  <span>{item.name}</span>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         ))}
       </div>
