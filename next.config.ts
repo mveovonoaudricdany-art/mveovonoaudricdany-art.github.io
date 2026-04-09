@@ -1,10 +1,17 @@
+/** @type {import('next').NextConfig} */
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   allowedDevOrigins: ["192.168.56.1", "localhost", "127.0.0.1"],
+  output: "export",
   images: {
-    domains: ["cdn.jsdelivr.net"],
+    // Pour Next.js 16+ : utiliser remotePatterns
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 };
 
